@@ -20,3 +20,7 @@ chmod +x ./install/install.sh
 ```
 
 Run the script to install **Homekit**
+
+```
+./install/install.sh
+```
