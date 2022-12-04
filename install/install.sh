@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # This script installs Kiwix, Home Assistant, and Jellyfin dependeing on your operating system. [Linux, MacOS, Windows]
+# Docker and Docker-Compose will be installed from ./scripts/docker_install.sh
+# Each application will be installed from ./scripts/kiwix.sh, ./scripts/homeassistant.sh, and ./scripts/jellyfin.sh
 
 # Linux
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -8,65 +10,64 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     mkdir ~/homekit-server/install
     cd ~/homekit-server/install
 
+    # run the docker install script
+    sudo chmod +x ./scripts/docker_install.sh
+    sudo ./scripts/docker_install.sh
 
-    # Kiwix
-    wget https://download.kiwix.org/release/kiwix-desktop/kiwix-desktop_x86_64.appimage # Install Kiwix (https://download.kiwix.org/release/kiwix-desktop/kiwix-desktop_x86_64.appimage)
-    chmod +x kiwix-desktop_x86_64.appimage # Make Kiwix executable
+    # run the kiwix install script
+    sudo chmod +x ./scripts/debian/kiwix.sh
+    sudo ./scripts/debian/kiwix.sh
 
-    # ./kiwix-desktop_x86_64.appimage # Run Kiwix
-    # create a systemctl service for Kiwix
-    sudo touch /etc/systemd/system/kiwix.service
-    sudo echo "[Unit]
-    Description=Kiwix
-    After=network.target
+    # run the home assistant install script
+    sudo chmod +x ./scripts/debian/homeassistant.sh
+    sudo ./scripts/debian/homeassistant.sh
 
-    [Service]
-    Type=simple
-    ExecStart=/home/pi/homekit-server/install/kiwix-desktop_x86_64.appimage
-    Restart=on-failure
-    RestartSec=10s
+    # run the jellyfin install script
+    sudo chmod +x ./scripts/debian/jellyfin.sh
+    sudo ./scripts/debian/jellyfin.sh
 
-    [Install]
-    WantedBy=multi-user.target" > /etc/systemd/system/kiwix.service
-    sudo systemctl enable kiwix.service # Enable Kiwix service
-    sudo systemctl start kiwix.service # Start Kiwix service
+# Raspberry Pi
+elif [[ "$OSTYPE" == "linux-gnueabihf" ]]; then
+    # make and change to the install directory
+    mkdir ~/homekit-server/install
+    cd ~/homekit-server/install
 
+    # run the docker install script
+    sudo chmod +x ./scripts/docker_install.sh
+    sudo ./scripts/docker_install.sh
 
-    # Install Home Assistant (https://www.home-assistant.io/installation/)
-    # Need to install Docker and Docker Compose first
-    # Install Docker
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
-    # Add the user to the docker group
-    sudo usermod -aG docker $USER
+    # run the kiwix install script
+    sudo chmod +x ./scripts/arm/kiwix.sh
+    sudo ./scripts/arm/kiwix.sh
 
-    # Install Docker Compose
-    sudo apt-get install -y libffi-dev libssl-dev
-    sudo apt-get install -y python3 python3-pip
-    sudo apt-get remove python-configparser
-    sudo pip3 -v install docker-compose
+    # run the home assistant install script
+    sudo chmod +x ./scripts/arm/homeassistant.sh
+    sudo ./scripts/arm/homeassistant.sh
 
-    # Install Home Assistant
-    sudo mkdir /opt/homeassistant
-    sudo chown $USER:$USER /opt/homeassistant
-    cd /opt/homeassistant
-    sudo docker-compose run --rm homeassistant
-    sudo docker-compose up -d
-    sudo docker-compose logs -f
+    # run the jellyfin install script
+    sudo chmod +x ./scripts/arm/jellyfin.sh
+    sudo ./scripts/arm/jellyfin.sh
 
+# MacOS
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # make and change to the install directory
+    mkdir ~/homekit-server/install
+    cd ~/homekit-server/install
 
-    # Install Jellyfin (https://jellyfin.org/docs/general/administration/installing)
-    # TODO: create bind-mount instructions for config and cache
-    docker pull jellyfin/jellyfin
-    docker volume create jellyfin-config
-    docker volume create jellyfin-cache
+    # run the docker install script
+    sudo chmod +x ./scripts/docker_install.sh
+    sudo ./scripts/docker_install.sh
 
-    docker run -d \
-    --name jellyfin \
-    --user uid:gid \
-    --net=host \
-    --volume jellyfin-config:/config \ # Alternatively --volume /path/to/config:/config 
-    --volume jellyfin-cache:/cache \ # Alternatively  --volume /path/to/cache:/cache
-    --mount type=bind,source=/path/to/media,target=/media \
-    --restart=unless-stopped \
-    jellyfin/jellyfin
+    # run the kiwix install script
+    sudo chmod +x ./scripts/kiwix.sh
+    sudo ./scripts/kiwix.sh
+
+    # run the home assistant install script
+    sudo chmod +x ./scripts/homeassistant.sh
+    sudo ./scripts/homeassistant.sh
+
+    # run the jellyfin install script
+    sudo chmod +x ./scripts/jellyfin.sh
+    sudo ./scripts/jellyfin.sh
+
+    
