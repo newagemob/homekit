@@ -6,10 +6,17 @@ Homekit is based on [Kiwix](https://www.kiwix.org), [Home Assistant](https://git
 
 # Getting Started
 
-Clone this repo.
+Clone this repo
 
 ```
-chmod +x ./homekit/install/install.sh
+git clone https://github.com/newagemob/homekit
 ```
 
+Make the `install.sh` script executable
 
+```
+cd homekit
+chmod +x ./install/install.sh
+```
+
+Run the script to install **Homekit**
