@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Kiwix
 wget https://download.kiwix.org/release/kiwix-desktop/kiwix-desktop_x86_64.appimage # Install Kiwix (https://download.kiwix.org/release/kiwix-desktop/kiwix-desktop_x86_64.appimage)
 chmod +x kiwix-desktop_x86_64.appimage                                              # Make Kiwix executable

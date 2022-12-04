@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install Jellyfin (https://jellyfin.org/docs/general/administration/installing)
 # TODO: create bind-mount instructions for config and cache
 
