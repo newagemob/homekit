@@ -1,1 +1,9 @@
-core/
+server/homeassistant/cache/
+server/homeassistant/config/
+server/homeassistant/db/
+
+server/jellyfin/cache/
+server/jellyfin/config/
+server/jellyfin/media/
+
+server/kiwix/
