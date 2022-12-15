@@ -7,3 +7,5 @@ server/jellyfin/config/
 server/jellyfin/media/
 
 server/kiwix/
+.DS_Store
+**/.DS_Store
