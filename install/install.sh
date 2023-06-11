@@ -5,26 +5,26 @@
 # Docker and Docker-Compose will be installed from ./scripts/docker_install.sh
 
 # check for Developer directory
-if [[ ! -d ~/Developer ]]; then
-  mkdir -p ~/Developer
-fi
+# if [[ ! -d ~/Developer ]]; then
+  # mkdir -p ~/Developer
+# fi
 
-mv $PWD ~/Developer
+# mv $PWD ~/Developer
 
-cd ~/Developer/homekit
+# cd ~/Developer/homekit
 
 # Install Docker and Docker-Compose
-chmod +x ./scripts/docker_install.sh
-./scripts/docker_install.sh
+# chmod +x ./scripts/docker_install.sh
+# ./scripts/docker_install.sh
 
 # Install Home Assistant
-chmod +x ./scripts/homeassistant.sh
+sudo chmod +x ./scripts/homeassistant.sh
 ./scripts/homeassistant.sh
 
 # Install Jellyfin
-chmod +x ./scripts/jellyfin.sh
+sudo chmod +x ./scripts/jellyfin.sh
 ./scripts/jellyfin.sh
 
 # Install Kiwix
-chmod +x ./scripts/kiwix.sh
+sudo chmod +x ./scripts/kiwix.sh
 ./scripts/kiwix.sh
