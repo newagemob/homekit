@@ -1,23 +1,23 @@
 .DS_Store
 **/.DS_Store
 
-./server/media-server/downloads/*
-./server/media-server/music/*
-./server/media-server/movies/*
-./server/media-server/tv/*
+server/media-server/downloads/*
+server/media-server/music/*
+server/media-server/movies/*
+server/media-server/tv/*
 
-./server/sonarr/data/*
+server/sonarr/data/*
 
-./server/radarr/data/*
+server/radarr/data/*
 
-./server/jackett/data/*
+server/jackett/data/*
 
-./server/jellyfin/cache/*
-./server/jellyfin/config/*
-./server/jellyfin/library/*
+server/jellyfin/cache/*
+server/jellyfin/config/*
+server/jellyfin/library/*
 
-./server/black-candy/uploads_data/*
+server/black-candy/uploads_data/*
 
-./server/transmission/data/*
-./server/transmission/watch/*
+server/transmission/data/*
+server/transmission/watch/*
 
