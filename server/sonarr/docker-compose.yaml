@@ -8,9 +8,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - $PWD/data:/config
-      - $PWD/../media-server/tv:/tv #optional
-      - $PWD/../media-server/downloads:/downloads #optional
+      - ./data:/config
+      - ../media-server/tv:/tv #optional
+      - ../media-server/downloads:/downloads #optional
     ports:
       - 8989:8989
     restart: unless-stopped

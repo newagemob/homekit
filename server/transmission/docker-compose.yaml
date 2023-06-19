@@ -14,9 +14,9 @@ services:
       - PEERPORT= #optional
       - HOST_WHITELIST= #optional
     volumes:
-      - $PWD/data:/config
-      - $PWD/watch:/watch
-      - $PWD/../media-server/downloads:/downloads
+      - ./data:/config
+      - ./watch:/watch
+      - ../media-server/downloads:/downloads
     ports:
       - 9091:9091
       - 51413:51413

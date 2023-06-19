@@ -2,12 +2,14 @@ version: '3'
 services:
   blackcandy:
     image: ghcr.io/blackcandy-org/blackcandy:edge
-    volumes:
-      # - $PWD/production.sqlite3:/app/db/production.sqlite3
-      - $PWD/uploads_data:/app/public/uploads
-      - $PWD/../media-server/music:/media_data
+    container_name: blackcandy
     environment:
       - MEDIA_PATH=/media_data
+    volumes:
+      - ./production.sqlite3:/app/db/production.sqlite3
+      - ./uploads_data:/app/public/uploads
+      - ../media-server/music:/media_data
     ports:
       - 6969:3000
+    restart: unless-stopped
 

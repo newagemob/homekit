@@ -10,8 +10,8 @@ services:
       - AUTO_UPDATE=true #optional
       - RUN_OPTS= #optional
     volumes:
-      - $PWD/data:/config
-      - $PWD/../media-server/downloads:/downloads
+      - ./data:/config
+      - ../media-server/downloads:/downloads
     ports:
       - 9117:9117
     restart: unless-stopped
