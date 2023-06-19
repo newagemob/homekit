@@ -1,15 +1,21 @@
-version: '3'
+# Black Candy Music Streaming Server
+version: '3.5'
 services:
-  blackcandy:
+  black-candy:
     image: ghcr.io/blackcandy-org/blackcandy:edge
-    container_name: blackcandy
-    environment:
-      - MEDIA_PATH=/media_data
-    volumes:
-      - ./production.sqlite3:/app/db/production.sqlite3
-      - ./uploads_data:/app/public/uploads
-      - ../media-server/music:/media_data
+    container_name: black-candy
     ports:
       - 6969:3000
-    restart: unless-stopped
+    volumes:
+      # - ./production.sqlite3:/app/db/production.sqlite3
+      # - ./uploads_data:/app/public/uploads
+      - ../media-server/music:/media_data
+    restart: 'unless-stopped'
+    # Optional - may be necessary for docker healthcheck to pass if running in host network mode
+    environment:
+      - MEDIA_PATH=/media_data
+      - BLACKCANDY_PublishedServerURL=http://host.docker.internal:6969
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
 
