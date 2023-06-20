@@ -1,53 +1,62 @@
 # Homekit
 
-***Pack-and-Go System for Data, Security, and Media***
+***Pack-and-Go Media Server***
 
-***Homekit*** is based on [Kiwix](https://www.kiwix.org), [Home Assistant](https://github.com/home-assistant), and [Jellyfin](https://jellyfin.org/downloads/).
+[Jellyfin]() + [Black Candy]() + [Sonarr]() + [Radarr]() + [Jackett]() + [Transmission]()
+
 
 ## Contents
 
 * ***[Getting Started](#Getting-Started)***
 * ***[Helpful Links](#Helpful-Links)***
 
-# Getting Started
+# Quick Start
 
-All pre-requisites are installed by the `install.sh` script.
+### 1. Install Docker and Docker Compose
 
-**The only things you need to do:**
-
+#### Windows
 ```bash
-# 1. Clone this repo
-
-git clone https://github.com/newagemob/homekit
-
-# 2. Make the `install.sh` script executable
-
-cd homekit
-chmod +x ./install/install.sh
-
-# 3. Run the script to install ***homekit*** from the base `homekit` directory. This is important because the script will use the current directory to make the `~/Developer` directory and move the `homekit` directory to it.
-
-./install/install.sh
+# 1. Install Docker Desktop for Windows
+curl -fsSL https://get.docker.com -o get-docker.sh
+# 2. Install Docker Compose
+pip install docker-compose
 ```
 
-The `install.sh` script will take a while to run. It will install the following:
+#### Linux
+```bash
+# 1. Install Docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+# 2. Install Docker Compose
 
-- Docker
-- Docker Compose
-- Home Assistant
-- Jellyfin
-- Kiwix
+```
 
-Everything will be installed in the `~/Developer/homekit` directory. The `install.sh` script will also create a `~/Developer/homekit/server` directory. This is where all of your app data and Docker bind-mounts will be stored. This includes:
+### 2. Clone this repo
 
-- `~/Developer/homekit/server/jellyfin/media` - Movies, Music, TV Shows, etc.
-- `~/Developer/homekit/server/homeassistant/config` - Home Assistant configuration files
-- `~/Developer/homekit/server/kiwix/data` - Kiwix data files
+```bash
+git clone https://www.github.com/newagemob/homekit.git
+```
 
-These are just a few important directories to be aware of when transferring media and data to your ***homekit*** server.
+or simply download the zip file and extract it.
 
+### 3. Start the containers
 
-# Helpful Links
+**All images + containers are created via the `server/start_homekit.sh` script.**
 
-[Docker and Docker Compose on Pi](https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo)
+```bash
+cd server && chmod +x ./start_homekit.sh && ./start_homekit.sh
+```
 
+### 4. Access Apps
+
+* Jellyfin: http://localhost:8096
+* Black Candy: http://localhost:6969
+* Sonarr: http://localhost:8989
+* Radarr: http://localhost:7878
+* Jackett: http://localhost:9117
+* Transmission: http://localhost:9091
+
+### 5. Add Media
+
+You can add your media to the `media-server` directory in the corresponding "movies", "tv", or "music" folders. After you've added your media you can use the Jellyfin web interface to add the `media-server/movies` and `media-server/tv` folders as libraries. Be sure to set up your account and server accordingly.
+
+You can use the Black Candy web interface to add the `media-server/music` folder as a library. Once you've created an account, go into *settings* and sync your music library.
