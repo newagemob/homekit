@@ -17,5 +17,3 @@ services:
       - BLACKCANDY_PublishedServerURL=http://host.docker.internal:6969
     extra_hosts:
       - "host.docker.internal:host-gateway"
-
-
