@@ -7,8 +7,8 @@ services:
     ports:
       - 6969:3000
     volumes:
-      # - ./production.sqlite3:/app/db/production.sqlite3
-      # - ./uploads_data:/app/public/uploads
+      - ./production.sqlite3:/app/db/production.sqlite3
+      - ./uploads_data:/app/public/uploads
       - ../media-server/music:/media_data
     restart: 'unless-stopped'
     # Optional - may be necessary for docker healthcheck to pass if running in host network mode
