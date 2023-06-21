@@ -7,7 +7,7 @@
 
 ## Contents
 
-* ***[Getting Started](#Getting-Started)***
+* ***[Quick Start](#Quick-Start)***
 * ***[Helpful Links](#Helpful-Links)***
 
 # Quick Start
